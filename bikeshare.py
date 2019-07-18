@@ -243,6 +243,14 @@ def user_stats(df, city):
     print('-'*40)
 
 
+##run the program
+##get inputs
+##check for valid inputs
+##load data
+##filter data
+##run analysis
+##option to print data
+##restart or terminate
 def main():
     while True:
         #get filters, set city, month, day
