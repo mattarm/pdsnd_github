@@ -14,7 +14,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-
+##function to get user input for filters of the dataset
 def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!\n\n')
     
@@ -46,9 +46,8 @@ def get_filters():
     print('-'*40)
     return city, month, day
 
-
+##load the data using the inputs from get_filters()
 def load_data(city, month, day):
-    ##load data based on inputs from get_filters()
 
     folder = '../bikeshare-2/'
     
@@ -83,6 +82,7 @@ def load_data(city, month, day):
     
     return df
 
+##run analysis for time stats - find most popular month, day & hour
 def time_stats(df, month, day):
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
@@ -118,7 +118,7 @@ def time_stats(df, month, day):
     #print("\nThis took %s seconds." % round((time.time() - start_time),3))
     print('-'*40)
 
-
+##funtion to get the most popular item & the number of rides associated with it
 def most_pop(df, field):
     #function for finding max of a group
     #make group for df and field
@@ -129,6 +129,7 @@ def most_pop(df, field):
     count = grouper_obj[item]
     print('Most popular {}: is {} with {} rides'.format(field, item, count))
     
+##get station_stats for most common start station, end station and combo of the two
 def station_stats(df):
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
@@ -151,6 +152,7 @@ def station_stats(df):
     #print("\nThis took %s seconds." % round((time.time() - start_time),3))
     print('-'*40)
 
+##stats for travel time, total time, average trip time, max trip time in seconds, minutes, hours, days
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
@@ -181,6 +183,7 @@ def trip_duration_stats(df):
     #print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
     
+##user tpe analysis, how many rides for each type of rider
 def cust_type_stats(df):
     cust_types = df['User Type'].unique()
     type_rides = df.groupby('User Type').size().sort_values(ascending=False)
@@ -188,7 +191,8 @@ def cust_type_stats(df):
         print('{} customers took {} trips'.format(t, type_rides[t]))
     print('\n')
         
-        
+
+##gender analysis, how many rides for each sex
 def gender_stats(df):
     genders = df['Gender'].unique()
     rides_by_gender = df.groupby('Gender').size()
@@ -196,6 +200,7 @@ def gender_stats(df):
         print('{} customers took {} trips'.format(g, rides_by_gender[g]))    
     print('\n')    
     
+##age analysis, oldest, youngest, average age and number of rides
 def age_stats(df):
     #age group object
     age_groups = df.groupby('Birth Year').size()
@@ -218,7 +223,7 @@ def age_stats(df):
     print('Most common birth year was: {}.  Took {} rides\n'.format(mode, mode_rides)) 
 
 
-    
+##age, gender, cust_type when the data is present    
 def user_stats(df, city):
 
     print('\nCalculating User Stats...\n')
@@ -272,10 +277,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# In[ ]:
-
-
-
-
